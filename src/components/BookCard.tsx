@@ -2,8 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Book, BookPdf } from "../api/books";
 import PosterImg from "./PosterImg";
-import { FontsList, Colors } from "../theme/styles";
+import ManageBookDetail from "./ManageBookDetail";
 
+import { FontsList, Colors } from "../theme/styles";
 
 import Rating from "./Rating";
 
@@ -11,14 +12,19 @@ interface Props {
   book: BookPdf;
   onPress?: () => void;
 }
-const BookCard = ({ book, onPress = () => {} }: Props) => {
+const BookCard = ({
+  book,
+  width = 80,
+  height = 110,
+  onPress = () => {},
+}: Props) => {
   return (
     <View style={styles.container}>
       <PosterImg
         imgURL={book.bookCover}
         showPlayBoton={false}
-        width={80}
-        height={110}
+        width={width}
+        height={height}
         onPress={onPress}
       />
 
@@ -28,6 +34,7 @@ const BookCard = ({ book, onPress = () => {} }: Props) => {
         </Text>
         <Text style={styles.authorText}>{book.bookWriterBy}</Text>
         <View style={styles.rowPrice}>
+          <ManageBookDetail book={book} />
 
           {/*
           <Text style={styles.priceText}>{book.bookDesc} </Text>
