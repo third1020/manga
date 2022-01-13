@@ -9,9 +9,10 @@ import BookCard from "./BookCard";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import * as FileSystem from "expo-file-system";
-
+import { useTheme } from "@react-navigation/native";
 export default function ManageBookDetail({ book }) {
   const [checkDownLoaded, setcheckDownLoaded] = useState(false);
+  const { colors } = useTheme();
   const [menuItems, setmenuItems] = useState([
     {
       title: "Download",
@@ -103,7 +104,7 @@ export default function ManageBookDetail({ book }) {
           onPress={() => refRBSheet.current.open()}
           size={20}
           style={{ marginBottom: -3 }}
-          color="white"
+          color={colors.text}
           name="ellipsis-horizontal"
         />
 
@@ -152,7 +153,7 @@ export default function ManageBookDetail({ book }) {
           onPress={() => downloadFile(book.fullFile)}
           size={20}
           style={{ marginBottom: -3 }}
-          color="white"
+          color={colors.text}
           name={checkDownLoaded ? "checkmark-outline" : "cloud-outline"}
         />
       </View>

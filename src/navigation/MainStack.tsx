@@ -15,6 +15,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import { ColorSchemeName, Pressable, Text } from "react-native";
 import Colors from "../constants/Colors";
+import { useTheme } from "@react-navigation/native";
 type MainStackScreensList = {
   Modal: undefined;
   Home: undefined;
@@ -70,6 +71,7 @@ const Tab = createBottomTabNavigator();
 
 function HomeTabs() {
   const [view, setview] = useState("vertical");
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       initialRouteName="Category"
@@ -79,7 +81,9 @@ function HomeTabs() {
     >
       <Tab.Screen
         name="Category"
-        children={({navigation}) => <Home navigation={navigation} view={view} />}
+        children={({ navigation }) => (
+          <Home navigation={navigation} view={view} />
+        )}
         options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
           tabBarVisible: false,
 
@@ -104,7 +108,7 @@ function HomeTabs() {
               <Icon
                 name={view === "vertical" ? "grid" : "list-outline"}
                 size={30}
-                color="black"
+                color={colors.text}
                 style={{ marginRight: 15 }}
               />
             </Pressable>

@@ -1,5 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import MainStackComponent from "./src/navigation/MainStack";
 import useCachedResources from "./src/hooks/useCachedResources";
 import {
@@ -12,8 +16,9 @@ import {
   Button,
 } from "react-native";
 import { LogBox } from "react-native";
-import { NativeBaseProvider, extendTheme } from "native-base";
+import { NativeBaseProvider } from "native-base";
 import { LoginProvider, LoginContext } from "./src/Context/LoginContext";
+import { ThemeProvider, ThemeContext } from "./src/Context/ThemeContext";
 import DarkLoginScreen from "react-native-dark-login-screen";
 import img from "./assets/user.jpg";
 import PDFReader from "rn-pdf-reader-js";
@@ -75,10 +80,22 @@ LogBox.ignoreAllLogs();
 //     );
 //   }
 // }
+const MyTheme = {
+  dark: false,
+  colors: {
+    primary: "rgb(255, 45, 85)",
+    background: "rgb(242, 242, 242)",
+    card: "rgb(255, 255, 255)",
+    text: "rgb(28, 28, 30)",
+    border: "rgb(199, 199, 204)",
+    notification: "rgb(255, 69, 58)",
+  },
+};
 
 function MangaApp() {
   const isLoadingComplete = useCachedResources();
   const [login, setlogin] = React.useContext(LoginContext);
+  const [theme, settheme] = React.useContext(ThemeContext);
   const [username, setusername] = React.useState("");
   const [password, setpassword] = React.useState("");
   const [authstatusfailed, setauthstatusfailed] = React.useState(false);
@@ -95,7 +112,9 @@ function MangaApp() {
   } else {
     if (login) {
       return (
-        <NavigationContainer>
+        <NavigationContainer
+          theme={theme === "dark" ? DarkTheme : DefaultTheme}
+        >
           <NativeBaseProvider>
             <MainStackComponent />
           </NativeBaseProvider>
@@ -159,7 +178,9 @@ function MangaApp() {
 function App() {
   return (
     <LoginProvider>
-      <MangaApp />
+      <ThemeProvider>
+        <MangaApp />
+      </ThemeProvider>
     </LoginProvider>
   );
 }

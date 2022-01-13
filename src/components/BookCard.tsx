@@ -5,7 +5,7 @@ import PosterImg from "./PosterImg";
 import ManageBookDetail from "./ManageBookDetail";
 
 import { FontsList, Colors } from "../theme/styles";
-
+import { useTheme } from "@react-navigation/native";
 import Rating from "./Rating";
 
 interface Props {
@@ -18,6 +18,55 @@ const BookCard = ({
   height = 110,
   onPress = () => {},
 }: Props) => {
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      width: 300,
+    },
+    bookDetail: {
+      marginLeft: 30,
+      flex: 1,
+      paddingVertical: 6,
+    },
+    bookTitle: {
+      fontSize: 18,
+      fontFamily: FontsList.GTSectraFine,
+      color: colors.text,
+      width: "100%",
+    },
+    authorText: {
+      fontSize: 12,
+      fontFamily: FontsList.MontserratMedium,
+      color: Colors.subTitle,
+      marginVertical: 5,
+    },
+    rowPrice: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    spacing: {
+      flex: 1,
+    },
+    priceText: {
+      color: colors.text,
+      fontSize: 18,
+      fontFamily: FontsList.MontserratSemiBold,
+    },
+    ratingAvarageText: {
+      fontSize: 14,
+      fontFamily: FontsList.MontserratMedium,
+      color: colors.text,
+      marginHorizontal: 5,
+    },
+    ratingPoepleText: {
+      fontFamily: FontsList.MontserratRegular,
+      fontSize: 13,
+      color: colors.text,
+    },
+  });
   return (
     <View style={styles.container}>
       <PosterImg
@@ -53,51 +102,3 @@ const BookCard = ({
 };
 
 export default BookCard;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    width: 300,
-  },
-  bookDetail: {
-    marginLeft: 30,
-    flex: 1,
-    paddingVertical: 6,
-  },
-  bookTitle: {
-    fontSize: 18,
-    fontFamily: FontsList.GTSectraFine,
-    color: "white",
-    width: "100%",
-  },
-  authorText: {
-    fontSize: 12,
-    fontFamily: FontsList.MontserratMedium,
-    color: Colors.subTitle,
-    marginVertical: 5,
-  },
-  rowPrice: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-  spacing: {
-    flex: 1,
-  },
-  priceText: {
-    color: "white",
-    fontSize: 18,
-    fontFamily: FontsList.MontserratSemiBold,
-  },
-  ratingAvarageText: {
-    fontSize: 14,
-    fontFamily: FontsList.MontserratMedium,
-    color: "white",
-    marginHorizontal: 5,
-  },
-  ratingPoepleText: {
-    fontFamily: FontsList.MontserratRegular,
-    fontSize: 13,
-    color: Colors.subTitle,
-  },
-});
