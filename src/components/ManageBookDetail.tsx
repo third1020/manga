@@ -17,7 +17,7 @@ export default function ManageBookDetail({ book }) {
     {
       title: "Download",
       icon: {
-        name: "cloud-download-outline",
+        name: "download-outline",
         backgroundColor: "black",
       },
       onPress: () => downloadFile(book.fullFile),
@@ -47,7 +47,7 @@ export default function ManageBookDetail({ book }) {
         {
           title: "Download",
           icon: {
-            name: "cloud-download-outline",
+            name: "download-outline",
             backgroundColor: "black",
           },
           onPress: () => downloadFile(book.fullFile),
@@ -102,8 +102,7 @@ export default function ManageBookDetail({ book }) {
       <View>
         <Ionicons
           onPress={() => refRBSheet.current.open()}
-          size={20}
-          style={{ marginBottom: -3 }}
+          size={16}
           color={colors.text}
           name="ellipsis-horizontal"
         />
@@ -151,10 +150,9 @@ export default function ManageBookDetail({ book }) {
       <View>
         <Ionicons
           onPress={() => downloadFile(book.fullFile)}
-          size={20}
-          style={{ marginBottom: -3 }}
+          size={16}
           color={colors.text}
-          name={checkDownLoaded ? "checkmark-outline" : "cloud-outline"}
+          name={checkDownLoaded ? "checkmark-outline" : "download-outline"}
         />
       </View>
     </>

@@ -133,6 +133,7 @@ const Home = ({ navigation, view }: Props) => {
   return (
     <>
       <View style={[globalStyles.globalMargin, styles.fixToText]}>
+      {/**
         <TouchableHighlight
           style={[
             styles.submit,
@@ -143,6 +144,8 @@ const Home = ({ navigation, view }: Props) => {
         >
           <Text style={[styles.submitText]}>Downloaded</Text>
         </TouchableHighlight>
+        **/}
+
       </View>
 
       <View style={[globalStyles.globalMargin, styles.container]}>
@@ -176,7 +179,7 @@ const Home = ({ navigation, view }: Props) => {
                       <PosterImg
                         imgURL={item.bookCover}
                         width={width / 3 - 20}
-                        height={(width / 3) * 1.53}
+                        height={(width / 3) * 1.3}
                         onPress={() => {
                           navigation.navigate("Modal", {
                             fullFile: item.fullFile,

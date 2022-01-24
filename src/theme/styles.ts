@@ -42,6 +42,6 @@ const lightTheme = {
 
 export const globalStyles = StyleSheet.create({
   globalMargin: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
 });
